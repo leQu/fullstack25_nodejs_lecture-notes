@@ -1,0 +1,15 @@
+RESTAURANG FULLSTACK
+====================
+
+Förrätt
+  Toast Skagen ............ 145 kr
+
+Varmrätt
+  Biff .................... 289 kr
+  Tonfisk ................. 189 kr
+  Pasta ................... 159 kr
+
+Efterrätt
+  Chokladfondant ........... 95 kr
+
+Välkommen in!

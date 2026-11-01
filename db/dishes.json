@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Biff",
+    "price": 289,
+    "category": "main"
+  },
+  {
+    "id": 2,
+    "name": "Tonfisk",
+    "price": 189,
+    "category": "main"
+  },
+  {
+    "id": 3,
+    "name": "Pasta",
+    "price": 159,
+    "category": "main"
+  },
+  {
+    "id": 4,
+    "name": "Toast Skagen",
+    "price": 145,
+    "category": "starter"
+  },
+  {
+    "id": 5,
+    "name": "Chokladfondant",
+    "price": 95,
+    "category": "dessert"
+  }
+]

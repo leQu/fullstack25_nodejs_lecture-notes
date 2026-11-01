@@ -1,0 +1,89 @@
+# Testa API:et direkt i VS Code med tillägget REST Client (eller Thunder Client).
+# Klicka på "Send Request" ovanför varje förfrågan.
+
+@baseUrl = http://localhost:3000
+@apiKey = hemlig-nyckel-123
+
+### Startsidan
+GET {{baseUrl}}/
+
+### Hela menyn
+GET {{baseUrl}}/dishes
+
+### Filtrera med query-strängen
+GET {{baseUrl}}/dishes?category=main&maxPrice=200
+
+### En rätt (req.params)
+GET {{baseUrl}}/dishes/2
+
+### Ogiltigt id → 400
+GET {{baseUrl}}/dishes/abc
+
+### Lägg till en rätt utan nyckel → 401
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+
+{ "name": "Kladdkaka", "price": 85, "category": "dessert" }
+
+### Lägg till en rätt med nyckel → 201
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{ "name": "Kladdkaka", "price": 85, "category": "dessert" }
+
+### Samma igen → 409 (finns redan)
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{ "name": "Kladdkaka", "price": 85, "category": "dessert" }
+
+### Felaktig data → 400 med en lista över felen
+POST {{baseUrl}}/dishes
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{ "name": "", "price": -5, "category": "snacks" }
+
+### Ändra priset (PATCH = bara de fält som skickas)
+PATCH {{baseUrl}}/dishes/2
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{ "price": 199 }
+
+### Ta bort en rätt → 204
+DELETE {{baseUrl}}/dishes/6
+x-api-key: {{apiKey}}
+
+### Lägg en beställning → 201
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{ "dishId": 2, "quantity": 2, "table": 4 }
+
+### Alla beställningar, med rättens namn
+GET {{baseUrl}}/orders
+
+### Sålda rätter (läser loggen rad för rad)
+GET {{baseUrl}}/orders/stats
+
+### Hela orderloggen som en stream (kräver nyckel)
+GET {{baseUrl}}/orders/log
+x-api-key: {{apiKey}}
+
+### Exportera beställningarna gzippade
+GET {{baseUrl}}/orders/export
+
+### Menyn som textfil (res.sendFile)
+GET {{baseUrl}}/menu.txt
+
+### Trasig JSON → 400
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{ "dishId": 2, "quantity": 2,
+
+### Okänd rutt → 404
+GET {{baseUrl}}/drinks

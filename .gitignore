@@ -1,0 +1,7 @@
+node_modules
+.env
+
+# Skapas när appen körs
+logs/
+db/orders.json
+demos/output/
